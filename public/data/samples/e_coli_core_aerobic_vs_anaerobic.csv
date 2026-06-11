@@ -1,0 +1,96 @@
+reaction_id,log2fc,p_value,subsystem,flux_cond1,flux_cond2
+PFK,1.9208,1.64e-06,Glycolysis/Gluconeogenesis,4.5813,17.3457
+PFL,2.7505,1.48e-06,Pyruvate Metabolism,9.9302,66.8245
+PGI,2.1828,1.16e-06,Glycolysis/Gluconeogenesis,4.298,19.514
+PGK,2.3796,1.27e-06,Glycolysis/Gluconeogenesis,5.4922,28.5811
+PGL,0.9612,0.0366,Pentose Phosphate Pathway,5.4315,10.5744
+ACALD,2.2272,1.37e-06,Pyruvate Metabolism,4.5101,21.1176
+AKGt2r,0.3229,0.527,"Transport, Extracellular",4.781,5.9804
+PGM,1.8394,2.37e-06,Glycolysis/Gluconeogenesis,2.5079,8.975
+PIt2r,0.7804,0.127,Inorganic Ion Transport and Metabolism,4.3781,7.5197
+ALCD2x,3.4757,1.39e-06,Pyruvate Metabolism,8.4219,93.691
+ACALDt,0.6125,0.28,"Transport, Extracellular",0.5564,0.8508
+ACKr,3.1288,1.32e-06,Pyruvate Metabolism,4.6081,40.3077
+PPC,1.2653,0.00702,Anaplerotic reactions,1.4428,3.4682
+ACONTa,-3.1594,6.87e-07,Citric Acid Cycle,2.9117,0.3259
+ACONTb,-2.3371,7.3e-07,Citric Acid Cycle,7.5559,1.4954
+ATPM,-0.4726,0.133,Biomass and maintenance functions,6.4763,4.6672
+PPCK,0.5552,0.0666,Anaplerotic reactions,2.9479,4.3314
+ACt2r,0.4091,0.515,"Transport, Extracellular",7.3883,9.8106
+PPS,1.5494,1.63e-05,Glycolysis/Gluconeogenesis,1.8034,5.2784
+ADK1,-3.043,8.4e-07,Oxidative Phosphorylation,3.3233,0.4032
+AKGDH,-1.6155,1.66e-05,Citric Acid Cycle,4.8179,1.5723
+ATPS4r,-3.4226,1.22e-06,Oxidative Phosphorylation,0.3912,0.0365
+PTAr,2.6184,1.03e-06,Pyruvate Metabolism,5.8597,35.9837
+PYK,1.9579,2.39e-06,Glycolysis/Gluconeogenesis,7.1525,27.7867
+BIOMASS_Ecoli_core_w_GAM,-0.159,0.47,Biomass and maintenance functions,3.2718,2.9303
+PYRt2,-0.6669,0.241,"Transport, Extracellular",9.1574,5.768
+CO2t,0.2614,0.467,"Transport, Extracellular",7.3479,8.8072
+RPE,0.5417,0.164,Pentose Phosphate Pathway,9.0638,13.194
+CS,-2.7123,1.89e-06,Citric Acid Cycle,6.3473,0.9685
+RPI,0.3603,0.113,Pentose Phosphate Pathway,5.0216,6.4462
+SUCCt2_2,0.8966,0.236,"Transport, Extracellular",7.7801,14.484
+CYTBD,-3.1759,8.42e-07,Oxidative Phosphorylation,5.6107,0.6208
+D_LACt2,0.9748,0.241,"Transport, Extracellular",5.0103,9.8472
+ENO,2.0536,1.54e-06,Glycolysis/Gluconeogenesis,4.7501,19.7197
+SUCCt3,0.0161,0.473,"Transport, Extracellular",1.7147,1.7338
+ETOHt2r,0.1307,0.492,"Transport, Extracellular",3.9701,4.3467
+SUCDi,-4.3067,1.31e-06,Oxidative Phosphorylation,7.2329,0.3655
+SUCOAS,-2.4545,8.54e-07,Citric Acid Cycle,8.6227,1.5732
+TALA,1.5487,0.00409,Pentose Phosphate Pathway,1.9347,5.66
+THD2,-3.4843,6.23e-07,Oxidative Phosphorylation,1.9497,0.1742
+TKT1,0.6538,0.106,Pentose Phosphate Pathway,1.3761,2.165
+TKT2,0.5817,0.0852,Pentose Phosphate Pathway,5.0808,7.6041
+TPI,3.2559,1.74e-06,Glycolysis/Gluconeogenesis,5.9425,56.7663
+EX_ac_e,0.7315,0.0995,Extracellular exchange,2.8594,4.7475
+EX_acald_e,1.4601,0.0297,Extracellular exchange,0.1427,0.3928
+EX_akg_e,0.2925,0.48,Extracellular exchange,5.1999,6.3686
+EX_co2_e,0.5286,0.247,Extracellular exchange,3.5351,5.0996
+EX_etoh_e,0.0893,0.742,Extracellular exchange,4.3752,4.6546
+EX_for_e,0.1639,0.494,Extracellular exchange,6.0612,6.7906
+EX_fru_e,0.4536,0.234,Extracellular exchange,3.1054,4.2528
+EX_fum_e,1.2965,0.0631,Extracellular exchange,4.9676,12.2015
+EX_glc__D_e,0.2224,0.311,Extracellular exchange,4.9321,5.754
+EX_gln__L_e,0.1148,0.378,Extracellular exchange,8.5002,9.2044
+EX_glu__L_e,0.5393,0.281,Extracellular exchange,6.2312,9.0554
+EX_h_e,0.6576,0.276,Extracellular exchange,11.5584,18.2326
+EX_h2o_e,0.866,0.165,Extracellular exchange,6.0526,11.0314
+EX_lac__D_e,0.5653,0.341,Extracellular exchange,6.6581,9.852
+EX_mal__L_e,-0.0613,0.729,Extracellular exchange,3.6348,3.4837
+EX_nh4_e,0.6264,0.128,Extracellular exchange,3.276,5.057
+EX_o2_e,-0.024,0.585,Extracellular exchange,6.422,6.316
+EX_pi_e,0.3921,0.476,Extracellular exchange,0.6509,0.8542
+EX_pyr_e,0.9549,0.102,Extracellular exchange,6.8654,13.3083
+EX_succ_e,0.7685,0.116,Extracellular exchange,3.3674,5.7361
+FBA,1.454,3.53e-05,Glycolysis/Gluconeogenesis,6.0965,16.702
+FBP,2.0015,1.19e-06,Glycolysis/Gluconeogenesis,11.898,47.6421
+FORt2,0.7478,0.124,"Transport, Extracellular",2.1981,3.6911
+FORt,1.3459,0.144,"Transport, Extracellular",5.0743,12.898
+FRD7,-2.0435,6.36e-07,Oxidative Phosphorylation,2.4978,0.6059
+FRUpts2,-0.0799,0.509,"Transport, Extracellular",5.2874,5.0027
+FUM,-1.8992,3.62e-06,Citric Acid Cycle,6.1546,1.65
+FUMt2_2,0.2082,0.452,"Transport, Extracellular",10.3287,11.9318
+G6PDH2r,-0.6229,0.136,Pentose Phosphate Pathway,8.6045,5.5876
+GAPD,1.1776,0.000182,Glycolysis/Gluconeogenesis,3.4605,7.8275
+GLCpts,-0.1188,0.578,"Transport, Extracellular",12.6592,11.6585
+GLNS,-1.2812,0.0247,Glutamate Metabolism,3.7949,1.5614
+GLNabc,-0.2614,0.595,"Transport, Extracellular",3.3103,2.7618
+GLUDy,0.369,0.17,Glutamate Metabolism,11.4796,14.8254
+GLUN,-0.1098,0.591,Glutamate Metabolism,8.8103,8.1645
+GLUSy,-0.3742,0.404,Glutamate Metabolism,6.6096,5.0995
+GLUt2r,0.3176,0.455,"Transport, Extracellular",9.1298,11.3778
+GND,-0.0363,0.576,Pentose Phosphate Pathway,7.0302,6.8554
+H2Ot,0.6409,0.317,"Transport, Extracellular",4.2912,6.6914
+ICDHyr,-2.3608,1.48e-06,Citric Acid Cycle,8.1039,1.5777
+ICL,0.7518,0.0454,Anaplerotic reactions,7.5875,12.7769
+LDH_D,3.1468,1.89e-06,Pyruvate Metabolism,6.5622,58.1215
+MALS,1.1145,0.00652,Anaplerotic reactions,5.0713,10.9802
+MALt2_2,0.178,0.681,"Transport, Extracellular",12.0485,13.6303
+MDH,-2.0166,8.28e-07,Citric Acid Cycle,3.1179,0.7706
+ME1,1.3308,0.00447,Anaplerotic reactions,1.0547,2.6528
+ME2,1.6987,0.000504,Anaplerotic reactions,4.7498,15.4182
+NADH16,-2.8101,1.11e-06,Oxidative Phosphorylation,2.791,0.3979
+NADTRHD,-2.7261,5.88e-07,Oxidative Phosphorylation,4.4968,0.6796
+NH4t,0.8461,0.151,Inorganic Ion Transport and Metabolism,7.4724,13.4331
+O2t,-0.3917,0.258,"Transport, Extracellular",2.18,1.6617
+PDH,1.7137,8.15e-06,Glycolysis/Gluconeogenesis,3.3456,10.9733

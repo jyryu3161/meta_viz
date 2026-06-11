@@ -1,0 +1,861 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-06-11T05:35:48.685Z",
+  "activeFeatures": [
+    "scripts",
+    "meta_viz",
+    "io",
+    "reconcile",
+    "enrichment",
+    "overview",
+    "state",
+    "detail",
+    "brenda"
+  ],
+  "primaryFeature": "scripts",
+  "features": {
+    "scripts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:28:02.807Z",
+        "lastUpdated": "2026-06-11T02:13:26.436Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/scripts/fetch_models.sh"
+    },
+    "meta_viz": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:30:02.187Z",
+        "lastUpdated": "2026-06-11T05:17:21.733Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/app/Legend.tsx"
+    },
+    "io": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:34:25.184Z",
+        "lastUpdated": "2026-06-11T04:55:11.450Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/io/parse.ts"
+    },
+    "reconcile": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:34:58.749Z",
+        "lastUpdated": "2026-06-11T00:38:35.916Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/reconcile/mapData.ts"
+    },
+    "enrichment": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:35:11.800Z",
+        "lastUpdated": "2026-06-11T05:12:01.847Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/enrichment/stats.ts"
+    },
+    "overview": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:35:30.580Z",
+        "lastUpdated": "2026-06-11T05:22:44.855Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/overview/color.ts"
+    },
+    "state": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:38:49.160Z",
+        "lastUpdated": "2026-06-11T05:13:58.828Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/state/store.ts"
+    },
+    "detail": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T00:39:10.789Z",
+        "lastUpdated": "2026-06-11T00:39:36.682Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/detail/SectorPanel.tsx"
+    },
+    "brenda": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-11T01:46:30.790Z",
+        "lastUpdated": "2026-06-11T05:35:48.685Z"
+      },
+      "lastFile": "/Users/jaeyongryu/Projects/meta_viz/src/brenda/BrendaMapView.tsx"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Dynamic",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-06-10T23:57:27.307Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-06-11T05:35:48.685Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-06-11T00:28:02.807Z",
+      "feature": "scripts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:30:02.187Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:30:09.521Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:34:25.184Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:34:32.408Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:34:50.847Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:34:58.749Z",
+      "feature": "reconcile",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:04.895Z",
+      "feature": "reconcile",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:11.800Z",
+      "feature": "enrichment",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:20.757Z",
+      "feature": "enrichment",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:30.580Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:41.304Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:44.639Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:35:50.972Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:36:02.440Z",
+      "feature": "enrichment",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:36:10.290Z",
+      "feature": "reconcile",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:36:24.686Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:36:39.990Z",
+      "feature": "reconcile",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:38:25.849Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:38:35.916Z",
+      "feature": "reconcile",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:38:49.160Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:39:04.996Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:39:10.789Z",
+      "feature": "detail",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:39:24.843Z",
+      "feature": "detail",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:39:36.682Z",
+      "feature": "detail",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:39:47.449Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:39:59.313Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:40:05.534Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:40:33.150Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:57:25.273Z",
+      "feature": "scripts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:57:56.588Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:59:25.157Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:59:34.007Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:59:39.505Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T00:59:52.130Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:00:02.230Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:00:12.222Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:00:16.416Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:00:22.117Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:00:30.633Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:04:44.322Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:05:06.487Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:05:11.968Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:05:20.790Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:05:44.823Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:05:49.606Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:08:04.777Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:13:44.153Z",
+      "feature": "scripts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:46:30.790Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:46:43.936Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:46:52.437Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:50:14.266Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:52:12.145Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:52:31.558Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:52:41.135Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:53:41.907Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:54:00.544Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:56:45.262Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:56:57.564Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:57:06.549Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:57:29.078Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T01:58:32.924Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:00:50.779Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:05:57.152Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:07:02.592Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:10:01.947Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:11:57.654Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:13:26.436Z",
+      "feature": "scripts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:22:46.249Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:23:29.764Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:23:37.645Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:24:08.783Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T02:24:18.050Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T03:20:30.068Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T03:21:39.856Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:33:33.789Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:33:49.179Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:34:09.146Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:34:23.550Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:34:54.589Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:35:14.731Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:35:29.622Z",
+      "feature": "enrichment",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:35:48.792Z",
+      "feature": "enrichment",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:36:31.940Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:39:21.780Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:39:39.177Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:54:20.432Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:54:36.763Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:54:52.300Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:55:11.450Z",
+      "feature": "io",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:55:25.813Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:55:44.676Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:56:04.082Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:56:11.129Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T04:56:27.730Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:12:01.847Z",
+      "feature": "enrichment",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:12:15.466Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:12:30.733Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:13:31.369Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:13:58.828Z",
+      "feature": "state",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:14:20.270Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:14:27.601Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:14:34.096Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:14:42.001Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:14:49.688Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:15:22.114Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:15:41.052Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:16:02.689Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:16:13.785Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:16:21.333Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:16:58.548Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:17:21.733Z",
+      "feature": "meta_viz",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:18:28.631Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:19:42.581Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:20:01.329Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:22:44.855Z",
+      "feature": "overview",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:34:38.793Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:34:50.575Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-11T05:35:48.685Z",
+      "feature": "brenda",
+      "phase": "do",
+      "action": "updated"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+reaction_id,log2fc,p_value,subsystem,flux_cond1,flux_cond2
+PFK,0.0,0.98,,0.0,0.0
+PFL,1.3898,0.0641,Pyruvate Metabolism,5.0,11.487
+PGI,2.9355,0.042,Glycolysis/Gluconeogenesis,5.0,40.0
+PGK,3.2224,0.0708,Glycolysis/Gluconeogenesis,5.0,40.0
+PGL,-1.3152,0.00212,Pentose Phosphate Pathway,5.0,1.895
+ACALD,0.2527,0.002,Pyruvate Metabolism,7.148,-7.148
+AKGt2r,8.5477,0.0128,,5.0,1810.193
+PGM,0.0,0.98,Glycolysis/Gluconeogenesis,0.0,0.0
+PIt2r,2.9089,1.62e-05,Inorganic Ion Transport and Metabolism,5.0,40.0
+ALCD2x,2.9452,0.0131,Pyruvate Metabolism,5.0,40.0
+ACALDt,-0.1002,0.002,"Transport, Extracellular",6.673,-6.673
+ACKr,-1.4373,0.0265,Pyruvate Metabolism,5.0,1.895
+PPC,8.2687,0.000187,,5.0,1810.193
+ACONTa,8.3895,0.000472,Citric Acid Cycle,5.0,1810.193
+ACONTb,0.0,0.98,Citric Acid Cycle,0.0,0.0
+ATPM,-0.1479,0.002,Biomass and maintenance functions,5.759,-5.759
+PPCK,2.9392,0.000334,Anaplerotic reactions,5.0,40.0
+ACt2r,-1.6506,0.00019,"Transport, Extracellular",5.0,1.895
+PPS,-1.3619,2.02e-05,,5.0,1.895
+ADK1,0.9794,0.00632,Oxidative Phosphorylation,5.0,11.487
+AKGDH,-0.2979,0.002,Citric Acid Cycle,7.853,-7.853
+ATPS4r,0.0,0.98,Oxidative Phosphorylation,0.0,0.0
+PTAr,-8.3529,0.00105,Pyruvate Metabolism,5.0,0.014
+PYK,1.2831,0.000121,Glycolysis/Gluconeogenesis,5.0,11.487
+BIOMASS_Ecoli_core_w_GAM,1.1396,0.000896,,5.0,11.487
+PYRt2,0.0932,0.002,"Transport, Extracellular",6.507,-6.507
+CO2t,-1.2425,0.00206,"Transport, Extracellular",5.0,1.895
+RPE,8.5239,3.15e-05,Pentose Phosphate Pathway,5.0,1810.193
+CS,0.0,0.98,Citric Acid Cycle,0.0,0.0
+RPI,0.9402,0.00436,Pentose Phosphate Pathway,5.0,11.487
+DEMO_OFFMAP_1,1.31,0.01,Synthetic pathway,3.0,9.0
+DEMO_OFFMAP_2,2.947,0.01,Synthetic pathway,3.0,9.0
+DEMO_OFFMAP_3,2.11,0.01,Synthetic pathway,3.0,9.0

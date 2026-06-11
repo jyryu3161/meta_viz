@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+*.tsbuildinfo
+
+# editor / plugin state
+.bkit/
+.omc/
+
+# generated BRENDA index + maps (rebuild: npm run data:brenda)
+public/brenda/
+
+# large MetaNetX reference (77 MB) — fetched by npm run data:brenda
+reac_xref.tsv
+
+# offline build helper inputs (downloaded, large)
+scripts/_e_coli_core.model.json
+scripts/_iJO1366.model.json
+scripts/_brenda_build/
