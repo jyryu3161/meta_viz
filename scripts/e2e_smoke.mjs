@@ -43,18 +43,19 @@ try {
 
   // 2. overview: BRENDA pathway tiles
   await page.locator('g.sector').first().waitFor({ timeout: 20000 })
-  const titles = await page.$$eval('g.sector title', (els) => els.map((e) => e.textContent || ''))
-  console.log(`overview pathways lit: ${titles.length}`)
-  if (titles.length < 10) fail(`expected >=10 pathways, got ${titles.length}`)
+  const sectors = await page.$$eval('g.sector', (els) =>
+    els.map((e) => ({ name: e.getAttribute('data-name') || '', mean: Number(e.getAttribute('data-mean')) })),
+  )
+  console.log(`overview pathways lit: ${sectors.length}`)
+  if (sectors.length < 10) fail(`expected >=10 pathways, got ${sectors.length}`)
 
-  const gly = titles.find((t) => t.split('\n')[0].trim() === 'glycolysis') || ''
-  const glyScore = Number((gly.match(/mean log2FC (-?[\d.]+)/) || [])[1])
-  console.log(`  glycolysis mean log2FC = ${glyScore}`)
+  const gly = sectors.find((s) => s.name === 'glycolysis')
+  console.log(`  glycolysis mean log2FC = ${gly ? gly.mean : 'n/a'}`)
   if (!gly) fail('glycolysis pathway missing from overview')
-  else if (!(glyScore > 0)) fail(`glycolysis should be up, got ${glyScore}`)
+  else if (!(gly.mean > 0)) fail(`glycolysis should be up, got ${gly.mean}`)
 
   // 3. drill into glycolysis -> BRENDA SVG map
-  const idx = titles.findIndex((t) => t.split('\n')[0].trim() === 'glycolysis')
+  const idx = sectors.findIndex((s) => s.name === 'glycolysis')
   await page.locator('g.sector').nth(idx).click()
   await page.locator('.brenda-svg svg').first().waitFor({ timeout: 25000 })
   await page
@@ -91,6 +92,38 @@ try {
   const rows = await page.locator('.sector-panel .rxn-table tbody tr').count()
   console.log(`  sector panel rows: ${rows}`)
   if (rows < 1) fail('sector panel has no rows')
+
+  // 4.5 EC links: BRENDA's relative `../enzyme.php` links must be rewritten to
+  // absolute URLs opening a new tab — clicking one must NOT reset the SPA.
+  const links = await page.$$eval('.brenda-svg svg a', (as) =>
+    as.map((a) => ({ href: a.getAttribute('href') || '', target: a.getAttribute('target') || '' })),
+  )
+  const ecLinks = links.filter((l) => /brenda-enzymes\.org\/enzyme\.php\?ecno=/.test(l.href))
+  const relative = links.filter((l) => l.href.startsWith('../'))
+  console.log(`  links: ${links.length} total, ${ecLinks.length} absolute BRENDA enzyme links, ${relative.length} still-relative`)
+  if (ecLinks.length < 1) fail('no absolute BRENDA enzyme.php links on the map')
+  if (relative.length) fail(`${relative.length} link(s) still relative (would reset the SPA)`)
+  if (ecLinks.some((l) => l.target !== '_blank')) fail('an EC link is missing target=_blank')
+
+  // actually click an enzyme EC link → it should open a BRENDA popup, SPA stays put.
+  // force:true because the enzyme <rect> sits over its parent <a> (Playwright calls
+  // the anchor "obscured"); the rect is INSIDE the anchor, so a real click navigates.
+  const urlBefore = page.url()
+  const popupP = page.waitForEvent('popup', { timeout: 5000 }).catch(() => null)
+  await page.locator('.brenda-svg svg a[href*="enzyme.php"]').first().click({ timeout: 5000, force: true }).catch((e) => fail(`EC click failed: ${e.message}`))
+  const popup = await popupP
+  if (popup) {
+    console.log(`  EC click opened popup: ${popup.url().slice(0, 64)}…`)
+    if (!/brenda-enzymes\.org/.test(popup.url())) fail(`EC popup url unexpected: ${popup.url()}`)
+    await popup.close()
+  } else {
+    fail('EC click opened no BRENDA tab (popup not detected)')
+  }
+  await page.waitForTimeout(300)
+  const stillOnMap = (await page.locator('.brenda-svg svg').count()) > 0
+  if (page.url() !== urlBefore) fail(`SPA navigated away on EC click (${page.url()})`)
+  if (!stillOnMap) fail('EC click reset the SPA — detail map gone')
+  console.log(`  after EC click: stayed-on-map=${stillOnMap}, url-unchanged=${page.url() === urlBefore}`)
 
   // 5. back to overview
   await page.getByRole('button', { name: '← Overview' }).click()

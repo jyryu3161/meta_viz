@@ -16,7 +16,6 @@ const fail = (s, m) => {
   failures++
 }
 const slug = (s) => s.replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '').slice(0, 40)
-const parseScore = (t) => Number((t.match(/mean log2FC (-?[\d.]+)/) || [])[1])
 
 const SCENARIOS = [
   { id: 'core_aerobic_anaerobic', sample: 'core_aerobic_anaerobic', minSectors: 10, named: { name: 'glycolysis', sign: 1 } },
@@ -82,19 +81,40 @@ async function run() {
       fail(sc.id, `load: ${e.message}`)
       continue
     }
-    const titles = await page.$$eval('g.sector title', (els) => els.map((e) => e.textContent || ''))
-    console.log(`  pathways lit: ${titles.length}`)
-    if (titles.length < sc.minSectors) fail(sc.id, `expected >=${sc.minSectors} pathways, got ${titles.length}`)
+    const sectors = await page.$$eval('g.sector', (els) =>
+      els.map((e) => ({ name: e.getAttribute('data-name') || '', score: Number(e.getAttribute('data-mean')) })),
+    )
+    console.log(`  pathways lit: ${sectors.length}`)
+    if (sectors.length < sc.minSectors) fail(sc.id, `expected >=${sc.minSectors} pathways, got ${sectors.length}`)
     if (sc.named) {
-      const t = titles.find((x) => x.split('\n')[0].trim() === sc.named.name) || ''
-      const score = parseScore(t)
-      console.log(`  ${sc.named.name} score=${score} (want sign ${sc.named.sign})`)
-      if (t && Math.sign(score) !== sc.named.sign) fail(sc.id, `${sc.named.name} sign ${Math.sign(score)} != ${sc.named.sign}`)
+      const s = sectors.find((x) => x.name === sc.named.name)
+      console.log(`  ${sc.named.name} score=${s ? s.score : 'n/a'} (want sign ${sc.named.sign})`)
+      if (s && Math.sign(s.score) !== sc.named.sign) fail(sc.id, `${sc.named.name} sign ${Math.sign(s.score)} != ${sc.named.sign}`)
     }
     await page.screenshot({ path: `${OUT}/${sc.id}__overview.png` })
 
-    const ranked = titles
-      .map((t, i) => ({ i, name: (t.split('\n')[0] || '').trim(), score: parseScore(t) }))
+    // small/unlabeled tiles must reveal their pathway name on hover (request #3)
+    if (sc.id === SCENARIOS[0].id) {
+      const box = await page.evaluate(() => {
+        const tiles = [...document.querySelectorAll('g.sector')]
+        const t = tiles.find((x) => !x.querySelector('.sector-label')) || tiles[tiles.length - 1]
+        if (!t) return null
+        const r = t.getBoundingClientRect()
+        return { x: r.x + r.width / 2, y: r.y + r.height / 2, name: t.getAttribute('data-name') }
+      })
+      if (box) {
+        await page.mouse.move(box.x, box.y)
+        await page.waitForTimeout(200)
+        const tipName = await page.locator('.brenda-tip .tip-name').first().textContent().catch(() => null)
+        console.log(`  hover unlabeled tile → tooltip="${tipName}" (tile data-name="${box.name}")`)
+        if (!tipName) fail(sc.id, 'overview hover tooltip did not appear on an unlabeled tile')
+        await page.screenshot({ path: `${OUT}/${sc.id}__overview_hover.png` })
+        await page.mouse.move(5, 5)
+      }
+    }
+
+    const ranked = sectors
+      .map((s, i) => ({ i, name: s.name, score: s.score }))
       .filter((x) => Number.isFinite(x.score))
       .sort((a, b) => b.score - a.score)
     const picks = [ranked[0], ranked[ranked.length - 1]].filter(Boolean)

@@ -146,6 +146,27 @@ export function BrendaMapView({ file, ecData, lim }: Props) {
           // BRENDA labels enzymes with no known EC as "?.?.?.?" — relabel to "N/A"
           else if (t.textContent && t.textContent.trim() === '?.?.?.?') t.textContent = 'N/A'
         })
+        // BRENDA draws the pathway-region background as a light-grey (#dedede) shape —
+        // a <polygon class="pw"> in single-pathway maps (sometimes a <rect>). Whiten it
+        // so the faded context (light boxes + lines) is legible, not grey-on-grey.
+        svg.querySelectorAll<SVGElement>('rect, polygon').forEach((r) => {
+          const f = (r.style.fill || r.getAttribute('fill') || '').toLowerCase().replace(/\s/g, '')
+          if (f === '#dedede' || f === 'rgb(222,222,222)') r.style.fill = '#ffffff'
+        })
+        // BRENDA's enzyme/ligand links are RELATIVE (`../enzyme.php?ecno=…`), which in
+        // an SPA navigate to a dead path and reset the app. Rewrite to absolute BRENDA
+        // URLs that open in a new tab.
+        const XLINK = 'http://www.w3.org/1999/xlink'
+        svg.querySelectorAll('a').forEach((a) => {
+          const href = a.getAttribute('href') ?? a.getAttributeNS(XLINK, 'href')
+          if (href && href.startsWith('../')) {
+            const abs = 'https://www.brenda-enzymes.org/' + href.slice(3)
+            a.setAttribute('href', abs)
+            a.removeAttributeNS(XLINK, 'href')
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+          }
+        })
 
         // Fit the viewBox to the actual content (BRENDA's declared canvas is huge).
         try {
@@ -195,22 +216,22 @@ export function BrendaMapView({ file, ecData, lim }: Props) {
       if (c) geom.push({ el: node, c, isMet: node.classList.contains('nodeCM') || node.classList.contains('nodeSM') })
     })
 
-    // fade the whole pathway into context...
+    // fade the whole pathway into context — but keep it legible on the white canvas
     svg.querySelectorAll<SVGElement>('path.link').forEach((p) => {
-      p.style.stroke = '#d3d8e0'
-      p.style.strokeOpacity = '0.5'
+      p.style.stroke = '#9aa6b5'
+      p.style.strokeOpacity = '0.75'
       p.style.strokeWidth = '1'
     })
     for (const { el } of geom) {
       const rect = el.querySelector<SVGRectElement>('rect')
       if (rect) {
-        rect.style.fill = '#eef1f4'
-        rect.style.stroke = '#dfe3e8'
-        rect.style.fillOpacity = '0.5'
+        rect.style.fill = '#eef1f6'
+        rect.style.stroke = '#c2cad6'
+        rect.style.fillOpacity = '0.95'
         rect.style.strokeWidth = '0.8'
       }
       el.querySelectorAll<SVGElement>('text').forEach((t) => {
-        t.style.opacity = '0.4'
+        t.style.opacity = '0.62'
         t.style.fontWeight = ''
       })
       el.removeAttribute('data-flux')

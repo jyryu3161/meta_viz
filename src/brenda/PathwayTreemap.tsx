@@ -1,4 +1,4 @@
-import { useId, useMemo } from 'react'
+import { useId, useMemo, useState } from 'react'
 import { hierarchy, treemap, treemapSquarify, type HierarchyRectangularNode } from 'd3-hierarchy'
 import type { PathwaySector } from './types'
 import { desaturate, divergingColor, textColor } from '../overview/color'
@@ -55,6 +55,9 @@ interface Props {
 /** Two-level treemap: BRENDA pathway category → pathway, colored by enrichment Z. */
 export function PathwayTreemap({ sectors, lim, alpha, onSelect }: Props) {
   const uid = useId().replace(/:/g, '') // unique clipPath id prefix (safe if multiple instances mount)
+  // instant floating tooltip — small tiles have no room for a label, so a hover
+  // tooltip is the only way to read their pathway name (native <title> lags ~1s).
+  const [tip, setTip] = useState<{ x: number; y: number; d: PathwaySector } | null>(null)
   const root = useMemo(() => {
     const byCat = new Map<string, PathwaySector[]>()
     for (const s of sectors) {
@@ -75,6 +78,7 @@ export function PathwayTreemap({ sectors, lim, alpha, onSelect }: Props) {
   const leaves = root.leaves()
 
   return (
+    <>
     <svg className="treemap" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
       {categories.map((c) => (
         <g key={`cat-${(c.data as CatDatum).category}`} transform={`translate(${c.x0},${c.y0})`}>
@@ -100,22 +104,24 @@ export function PathwayTreemap({ sectors, lim, alpha, onSelect }: Props) {
         const maxChars = Math.max(4, Math.floor((w - 10) / 6.6))
         const maxNameLines = Math.max(1, Math.min(3, Math.floor((h - 22) / lineH)))
         const nameLines = wrapLabel(d.name, maxChars, maxNameLines)
-        const enrichPStr = d.enrichP < 1e-3 ? d.enrichP.toExponential(1) : d.enrichP.toFixed(3)
         return (
           <g
             key={d.name}
             transform={`translate(${node.x0},${node.y0})`}
             className="sector"
+            data-name={d.name}
+            data-mean={d.meanLog2fc}
+            data-z={d.enrichZ}
             onClick={() => onSelect(d.name)}
             role="button"
             tabIndex={0}
+            aria-label={`${d.name}, ${d.matchedEcs.length} of ${d.totalEcs} enzymes with flux, enrichment Z ${d.enrichZ.toFixed(2)}`}
+            onMouseMove={(e) => setTip({ x: e.clientX, y: e.clientY, d })}
+            onMouseLeave={() => setTip(null)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') onSelect(d.name)
             }}
           >
-            <title>
-              {`${d.name}\n${d.matchedEcs.length}/${d.totalEcs} enzymes with flux\nenrichment Z ${d.enrichZ.toFixed(2)} (p ${enrichPStr}) · mean log2FC ${d.meanLog2fc.toFixed(2)}`}
-            </title>
             <clipPath id={clip}>
               <rect width={w} height={h} />
             </clipPath>
@@ -136,5 +142,19 @@ export function PathwayTreemap({ sectors, lim, alpha, onSelect }: Props) {
         )
       })}
     </svg>
+    {tip && (
+      <div className="brenda-tip" style={{ left: tip.x + 14, top: tip.y + 14 }}>
+        <div className="tip-name">{tip.d.name}</div>
+        <div className="tip-val">
+          {tip.d.matchedEcs.length}/{tip.d.totalEcs} enzymes with flux
+          <div className="tip-rxn">
+            enrichment Z {tip.d.enrichZ.toFixed(2)} (p{' '}
+            {tip.d.enrichP < 1e-3 ? tip.d.enrichP.toExponential(1) : tip.d.enrichP.toFixed(3)}) · mean log2FC{' '}
+            {tip.d.meanLog2fc.toFixed(2)}
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
