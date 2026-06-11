@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useStore } from './state/store'
 import { loadBrendaIndex } from './brenda/registry'
 import { UploadForm } from './app/UploadForm'
@@ -26,6 +26,28 @@ export default function App() {
   const selectPathway = useStore((s) => s.selectPathway)
   const back = useStore((s) => s.back)
 
+  // ── browser-history navigation ──────────────────────────────────────────
+  // The view lives in the store; mirror pathway drill-in/out into the History
+  // API so the browser (and mouse side-button / swipe) Back/Forward work like a
+  // normal website. pushState doesn't fire popstate, so there is no feedback loop.
+  const navigateToPathway = useCallback(
+    (name: string) => {
+      // skip a duplicate push if we're already on this pathway (e.g. a double-click),
+      // otherwise Back would need two presses to reach the overview.
+      if (window.history.state?.pathway !== name) {
+        window.history.pushState({ pathway: name }, '', '#' + encodeURIComponent(name))
+      }
+      selectPathway(name)
+    },
+    [selectPathway],
+  )
+  const navigateBack = useCallback(() => {
+    // when we pushed a detail entry, mirror the browser Back button so the in-app
+    // button and the mouse/browser Back behave identically; else drop to overview.
+    if (window.history.state?.pathway) window.history.back()
+    else back()
+  }, [back])
+
   // load the BRENDA index once
   useEffect(() => {
     let cancelled = false
@@ -40,6 +62,33 @@ export default function App() {
       cancelled = true
     }
   }, [])
+
+  // Back/Forward (browser buttons, mouse side-buttons, trackpad swipe) restore
+  // the view from the URL hash. selectPathway/back here only set store state.
+  useEffect(() => {
+    const onPop = () => {
+      const name = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : ''
+      // a hash that matches no current pathway — a stale forward entry from an old
+      // dataset, a shared deep-link, or a hand-edited URL — should fall back to the
+      // overview and drop the dead hash, not render "pathway not found".
+      if (name && useStore.getState().sectors.some((s) => s.name === name)) {
+        selectPathway(name)
+      } else {
+        if (name) window.history.replaceState(null, '', window.location.pathname + window.location.search)
+        back()
+      }
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [selectPathway, back])
+
+  // A dataset (re)load always lands on the overview — drop any #pathway carried over
+  // from a previous dataset so Back/Forward/refresh can't resurrect a dead pathway.
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }, [dataset])
 
   const activeSector = useMemo(
     () => sectors.find((s) => s.name === selectedPathway) ?? null,
@@ -96,7 +145,7 @@ export default function App() {
         <main className="overview-layout">
           <div className="overview-main">
             {sectors.length > 0 ? (
-              <PathwayTreemap sectors={sectors} lim={limZ} onSelect={selectPathway} alpha={alpha} />
+              <PathwayTreemap sectors={sectors} lim={limZ} onSelect={navigateToPathway} alpha={alpha} />
             ) : (
               <div className="empty-note">
                 <p>
@@ -121,7 +170,7 @@ export default function App() {
       ) : (
         <main className="detail">
           <div className="detail-bar">
-            <button className="back" onClick={back}>
+            <button className="back" onClick={navigateBack}>
               ← Overview
             </button>
             <h2>{selectedPathway}</h2>

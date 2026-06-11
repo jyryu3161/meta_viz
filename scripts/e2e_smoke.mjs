@@ -125,10 +125,72 @@ try {
   if (!stillOnMap) fail('EC click reset the SPA — detail map gone')
   console.log(`  after EC click: stayed-on-map=${stillOnMap}, url-unchanged=${page.url() === urlBefore}`)
 
-  // 5. back to overview
+  // 5. browser/mouse Back & Forward must navigate overview ⇄ detail (History API)
+  if (!/#glycolysis$/.test(page.url())) fail(`detail URL should carry #glycolysis, got ${page.url()}`)
+
+  // 5a. browser Back → overview (hash cleared, detail map gone)
+  await page.goBack()
+  await page.locator('main.overview-layout g.sector').first().waitFor({ timeout: 6000 }).catch(() => fail('Back did not return to overview'))
+  const onOverviewAfterBack = (await page.locator('main.overview-layout').count()) > 0 && (await page.locator('.brenda-svg svg').count()) === 0
+  if (!onOverviewAfterBack) fail('browser Back did not show the overview')
+  if (/#/.test(page.url())) fail(`Back should clear the hash, got ${page.url()}`)
+  console.log(`  browser Back → overview ok (url=${page.url()})`)
+
+  // 5b. browser Forward → detail glycolysis again
+  await page.goForward()
+  await page.locator('.brenda-svg svg').first().waitFor({ timeout: 15000 }).catch(() => fail('Forward did not restore the detail map'))
+  if (!/#glycolysis$/.test(page.url())) fail(`Forward should restore #glycolysis, got ${page.url()}`)
+  const detailHeader = await page.locator('main.detail h2').first().textContent().catch(() => '')
+  console.log(`  browser Forward → detail ok (${detailHeader?.trim()}, url=${page.url()})`)
+  if (detailHeader?.trim() !== 'glycolysis') fail(`Forward restored wrong pathway: ${detailHeader}`)
+
+  // 5c. in-app "← Overview" button mirrors Back
   await page.getByRole('button', { name: '← Overview' }).click()
-  await page.locator('g.sector').first().waitFor({ timeout: 6000 })
-  console.log('back-to-overview: ok')
+  await page.locator('main.overview-layout g.sector').first().waitFor({ timeout: 6000 })
+  if (/#/.test(page.url())) fail(`← Overview button should clear the hash, got ${page.url()}`)
+  console.log('  ← Overview button → overview ok')
+
+  // 6. switching dataset while on a pathway resets to overview + clears stale hash
+  const names6 = await page.$$eval('g.sector', (els) => els.map((e) => e.getAttribute('data-name') || ''))
+  await page.locator('g.sector').nth(Math.max(0, names6.indexOf('glycolysis'))).click()
+  await page.locator('.brenda-svg svg').first().waitFor({ timeout: 15000 })
+  if (!/#glycolysis$/.test(page.url())) fail(`expected #glycolysis before sample switch, got ${page.url()}`)
+  await page.locator('.sample-selector select').first().selectOption('core_glucose_acetate')
+  await page.locator('main.overview-layout g.sector').first().waitFor({ timeout: 15000 }).catch(() => fail('sample switch did not return to overview'))
+  if ((await page.locator('.brenda-svg svg').count()) !== 0) fail('sample switch left the detail map mounted')
+  if (/#/.test(page.url())) fail(`sample switch should clear the hash, got ${page.url()}`)
+  console.log(`  sample switch while on detail → overview, hash cleared (url=${page.url()})`)
+
+  // 7. a stale/unknown #pathway reached via Back must fall back to the overview
+  //    (not "pathway not found") and drop the dead hash
+  await page.evaluate(() => {
+    history.pushState({ pathway: '__nope__' }, '', '#__nope__')
+    history.pushState(null, '', location.pathname + location.search)
+  })
+  await page.goBack() // traverses onto the stale #__nope__ entry → fires popstate
+  await page.locator('main.overview-layout g.sector').first().waitFor({ timeout: 6000 }).catch(() => fail('stale hash did not fall back to overview'))
+  if ((await page.locator('.brenda-svg svg').count()) !== 0) fail('stale hash left a detail map mounted')
+  if (/#/.test(page.url())) fail(`stale hash should be cleared on fallback, got ${page.url()}`)
+  console.log(`  stale/unknown #hash → overview fallback, hash cleared (url=${page.url()})`)
+
+  // 8. a pathway name with spaces/special chars must round-trip through the hash + Back/Forward
+  const names8 = await page.$$eval('g.sector', (els) => els.map((e) => e.getAttribute('data-name') || ''))
+  const spacey = names8.find((n) => /[\s/]/.test(n))
+  if (!spacey) {
+    console.log('  (no multi-word pathway available to test special-char hash)')
+  } else {
+    await page.locator('g.sector').nth(names8.indexOf(spacey)).click()
+    await page.locator('.brenda-svg svg').first().waitFor({ timeout: 15000 })
+    const expected = '#' + encodeURIComponent(spacey)
+    if (!page.url().endsWith(expected)) fail(`special-char hash mismatch: want …${expected}, got ${page.url()}`)
+    await page.goBack()
+    await page.locator('main.overview-layout g.sector').first().waitFor({ timeout: 6000 })
+    await page.goForward()
+    await page.locator('.brenda-svg svg').first().waitFor({ timeout: 15000 })
+    const hdr = (await page.locator('main.detail h2').first().textContent())?.trim()
+    if (hdr !== spacey) fail(`special-char Forward restored "${hdr}", expected "${spacey}"`)
+    console.log(`  special-char pathway "${spacey}" round-trips through hash + Back/Forward ok`)
+  }
 } catch (e) {
   fail(`exception: ${e.message}`)
 } finally {
